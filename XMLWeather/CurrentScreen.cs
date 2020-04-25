@@ -20,10 +20,29 @@ namespace XMLWeather
         public void DisplayCurrent()
         {
             // the current information is in index 0, thus why all information is retreived from there
+            dateLabel.Text = DateTime.Now.ToString("dddd" + ", " + "MMMM" + " dd");
+            timeLabel.Text = DateTime.Now.ToString("h:mm tt");
             cityOutput.Text = Form1.days[0].location;
-            tempLabel.Text = Form1.days[0].currentTemp;
-            minOutput.Text = Form1.days[0].tempLow;
-            maxOutput.Text = Form1.days[0].tempHigh;
+            currentOutput.Text = Form1.days[0].currentTemp + " °C";
+            minOutput.Text = Form1.days[0].tempLow + " °C";
+            maxOutput.Text = Form1.days[0].tempHigh + " °C";
+            conditionOutput.Text = Form1.days[0].condition;
+            eveTemp.Text = Form1.days[1].eveTemp+" °C";
+                nightTemp.Text = Form1.days[1].nightTemp + " °C";
+            if (Form1.days[0].condition.Contains("cloud"))
+            {
+                this.BackgroundImage=(Properties.Resources.cloudy);
+                day.BackgroundImage = (Properties.Resources.cloudy1);
+            }
+            if (Form1.days[0].condition.Contains("sun"))
+            {
+                this.BackgroundImage = (Properties.Resources.sunny);}
+            if (Form1.days[0].condition.Contains("rain"))
+            {
+                this.BackgroundImage = (Properties.Resources.rain); }
+            if (Form1.days[0].condition.Contains("cloud"))
+            {
+                this.BackgroundImage = (Properties.Resources.cloudy);}
         }
 
         /// <summary>
@@ -39,6 +58,15 @@ namespace XMLWeather
 
             ForecastScreen fs = new ForecastScreen();
             f.Controls.Add(fs);
+        }
+
+        private void searchLabel_Click(object sender, EventArgs e)
+        {
+            Form f = this.FindForm();
+            f.Controls.Remove(this);
+
+            Search ss = new Search();
+            f.Controls.Add(ss);
         }
     }
 }

@@ -16,6 +16,8 @@ namespace XMLWeather
     {
         // list to hold day objects
         public static List<Day> days = new List<Day>();
+        public static string urlFore = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0";
+        public static string urlCur = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
 
         public Form1()
         {
@@ -36,7 +38,7 @@ namespace XMLWeather
         private void ExtractForecast()
         {
             // get forecast information from web and place in an xml file
-            XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0");
+            XmlReader reader = XmlReader.Create(urlFore);
 
             // extract the relevant information for a day, and repeat for each day in the forecast
             while (reader.Read())
@@ -52,7 +54,11 @@ namespace XMLWeather
                 reader.ReadToFollowing("temperature");
                 d.tempLow = reader.GetAttribute("min");
                 d.tempHigh = reader.GetAttribute("max");
+                d.eveTemp = reader.GetAttribute("eve");
+                d.nightTemp = reader.GetAttribute("night");
 
+                reader.ReadToFollowing("symbol");
+                d.conditionFore = reader.GetAttribute("name");
                 // add day to days list
                 days.Add(d);
             }
@@ -66,7 +72,7 @@ namespace XMLWeather
         private void ExtractCurrent()
         {
             // get current information from web and place in an xml file
-            XmlReader reader = XmlReader.Create("http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0");
+            XmlReader reader = XmlReader.Create(urlCur);
 
             // find the city element, and add it's name attribute to days[0], (today)
             reader.ReadToFollowing("city");
@@ -75,6 +81,9 @@ namespace XMLWeather
             // find the temperature element and add the value attribute, (current temp), to days[0], (today)
             reader.ReadToFollowing("temperature");
             days[0].currentTemp = reader.GetAttribute("value");
+
+            reader.ReadToFollowing("weather");
+            days[0].condition = reader.GetAttribute("value");
         }
     }
 }
