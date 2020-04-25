@@ -41,6 +41,7 @@
             this.kitchener = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -102,7 +103,7 @@
             this.searchTextBox.Multiline = true;
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(512, 60);
-            this.searchTextBox.TabIndex = 0;
+            this.searchTextBox.TabIndex = 80;
             this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
             // 
             // toronto
@@ -189,12 +190,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.label3.Font = new System.Drawing.Font("Yu Gothic UI", 14.125F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.label3.ForeColor = System.Drawing.Color.Maroon;
+            this.label3.Location = new System.Drawing.Point(59, 591);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(621, 121);
+            this.label3.TabIndex = 91;
+            this.label3.Text = "click the above citys to see their weather, or search your own\r\n\r\n";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            // 
             // Search
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.kitchener);
             this.Controls.Add(this.vancouver);
@@ -228,5 +242,6 @@
         private System.Windows.Forms.Label vancouver;
         private System.Windows.Forms.Label kitchener;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }
