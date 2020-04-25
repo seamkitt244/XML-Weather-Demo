@@ -102,7 +102,8 @@
             this.searchTextBox.Multiline = true;
             this.searchTextBox.Name = "searchTextBox";
             this.searchTextBox.Size = new System.Drawing.Size(512, 60);
-            this.searchTextBox.TabIndex = 80;
+            this.searchTextBox.TabIndex = 0;
+            this.searchTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.searchTextBox_KeyDown);
             // 
             // toronto
             // 

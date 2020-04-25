@@ -8,14 +8,15 @@ using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using System.Xml;
-using System.Diagnostics;
 
 namespace XMLWeather
-{
+{//Seamus Kittmer weatherAPI app (ment as a small desktop widget) April 24 2020
     public partial class Form1 : Form
     {
         // list to hold day objects
         public static List<Day> days = new List<Day>();
+
+        //urls which will change if the user wants to look up another city's weather
         public static string urlFore = "http://api.openweathermap.org/data/2.5/forecast/daily?q=Stratford,CA&mode=xml&units=metric&cnt=7&appid=3f2e224b815c0ed45524322e145149f0";
         public static string urlCur = "http://api.openweathermap.org/data/2.5/weather?q=Stratford,CA&mode=xml&units=metric&appid=3f2e224b815c0ed45524322e145149f0";
 
@@ -23,6 +24,7 @@ namespace XMLWeather
         {
             InitializeComponent();
 
+            //calling the weather APIs
             ExtractForecast();
             ExtractCurrent();
 
@@ -63,13 +65,12 @@ namespace XMLWeather
                 days.Add(d);
             }
         }
-
         /// <summary>
         /// This method will get the current conditions from the web, convert them to an XML file,
         /// and then use that file to extract information that is not in the forecast file, 
         /// such as the current temperature
         /// </summary>
-        private void ExtractCurrent()
+        private void ExtractCurrent() 
         {
             // get current information from web and place in an xml file
             XmlReader reader = XmlReader.Create(urlCur);
